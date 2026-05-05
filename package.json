@@ -1,0 +1,11 @@
+{
+  "name": "portfolio-3d",
+  "version": "1.0.0",
+  "description": "3D Space Portfolio — Galassie interattive con Three.js",
+  "scripts": {
+    "test": "node tests/run.js"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
