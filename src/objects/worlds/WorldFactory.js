@@ -5,6 +5,7 @@ import { Lava    } from './Lava.js';
 import { Ocean   } from './Ocean.js';
 import { Desert  } from './Desert.js';
 import { Nebular } from './Nebular.js';
+import { Storm   } from './Storm.js';
 
 const TYPE_MAP = {
   rocky:   Rocky,
@@ -13,7 +14,8 @@ const TYPE_MAP = {
   lava:    Lava,
   ocean:   Ocean,
   desert:  Desert,
-  // nebular: Nebular,
+  nebular: Nebular,
+  storm:   Storm,
 };
 
 export function createWorld(data, parentGroup) {

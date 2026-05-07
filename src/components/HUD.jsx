@@ -1,13 +1,10 @@
 import GalaxyNav from './GalaxyNav';
 
-export default function HUD({ activeGalaxy, galaxies, lang, onBack, onGalaxySelect, t }) {
+export default function HUD({ activeGalaxy, galaxies, lang, onGalaxySelect, onWorldSelect, t }) {
   return (
     <div className="hud">
       <div className="hud-left">
-        {activeGalaxy && (
-          <button className="back-btn" onClick={onBack}>{t('back')}</button>
-        )}
-        <GalaxyNav galaxies={galaxies} lang={lang} onSelect={onGalaxySelect} t={t} />
+        <GalaxyNav galaxies={galaxies} lang={lang} onGalaxySelect={onGalaxySelect} onWorldSelect={onWorldSelect} t={t} />
       </div>
       {activeGalaxy && (
         <div className="galaxy-label">

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { scene, initRenderer, renderer } from '../core/Scene.js';
-import { camera, initControls, moveCameraTo, updateCamera } from '../core/Camera.js';
+import { camera, initControls, moveCameraTo, updateCamera, isCameraAnimating } from '../core/Camera.js';
 import { setupLights } from '../core/Lights.js';
 import { createStars } from '../objects/Stars.js';
 import { createNebula } from '../objects/Nebula.js';
@@ -19,8 +19,9 @@ export function useThree(canvasRef, callbacks) {
   const activeGalaxyRef = useRef(null);
   const stateRef        = useRef('space');
 
-  const selectGalaxyRef = useRef(() => {});
-  const closeGalaxyRef  = useRef(() => {});
+  const selectGalaxyRef    = useRef(() => {});
+  const closeGalaxyRef     = useRef(() => {});
+  const navigateToWorldRef = useRef(() => {});
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -86,8 +87,29 @@ export function useThree(canvasRef, callbacks) {
       openGalaxy(target);
     }
 
-    selectGalaxyRef.current = selectGalaxy;
-    closeGalaxyRef.current  = closeGalaxy;
+    function navigateToWorld(galaxyId, worldId) {
+      const galaxy = galaxiesRef.current.find(g => g.data.id === galaxyId);
+      if (!galaxy) return;
+
+      if (activeGalaxyRef.current !== galaxy) {
+        if (activeGalaxyRef.current) activeGalaxyRef.current.close();
+        openGalaxy(galaxy);
+      }
+
+      const world = galaxy.worlds.find(w => w.data.id === worldId);
+      if (!world) return;
+
+      const worldPos = new THREE.Vector3();
+      world.mesh.getWorldPosition(worldPos);
+      moveCameraTo(
+        worldPos.clone().add(new THREE.Vector3(0, 2.5, 5)),
+        worldPos.clone()
+      );
+    }
+
+    selectGalaxyRef.current    = selectGalaxy;
+    closeGalaxyRef.current     = closeGalaxy;
+    navigateToWorldRef.current = navigateToWorld;
 
     // ─── Events ───────────────────────────────────────────────────────────
     renderer.domElement.addEventListener('click', e => {
@@ -151,12 +173,15 @@ export function useThree(canvasRef, callbacks) {
 
     return () => {
       cancelAnimationFrame(frameId);
-      renderer.dispose();
+      // Clear scene to prevent object doubling on HMR reload
+      while (scene.children.length > 0) scene.remove(scene.children[0]);
+      renderer?.dispose();
     };
   }, []);
 
   return {
-    selectGalaxy: id  => selectGalaxyRef.current(id),
-    closeGalaxy:  ()  => closeGalaxyRef.current(),
+    selectGalaxy:    id           => selectGalaxyRef.current(id),
+    closeGalaxy:     ()           => closeGalaxyRef.current(),
+    navigateToWorld: (gId, wId)   => navigateToWorldRef.current(gId, wId),
   };
 }

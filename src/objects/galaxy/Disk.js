@@ -60,20 +60,20 @@ const FRAG = `
 
     float bright = armStr * falloff + corePeak + interArm;
 
-    // ── Color gradient: warm white → galaxy color → purple → deep blue ─
+    // ── Color gradient: amber → galaxy color → cool blue-purple outer ──
     float t = clamp(r / 0.46, 0.0, 1.0);
 
-    vec3 coreCol  = vec3(1.00, 0.97, 0.92);
-    vec3 armCol   = clamp(uGalColor * 1.3, 0.0, 1.0);
-    vec3 midCol   = mix(uGalColor * 0.75, vec3(0.45, 0.22, 0.82), 0.55);
-    vec3 outerCol = vec3(0.07, 0.11, 0.50);
+    vec3 coreCol  = vec3(1.00, 0.78, 0.42);               // amber nucleus
+    vec3 armCol   = clamp(uGalColor * 1.1, 0.0, 1.0);
+    vec3 midCol   = mix(uGalColor * 0.65, vec3(0.35, 0.18, 0.70), 0.50);
+    vec3 outerCol = vec3(0.05, 0.08, 0.38);
 
     vec3 col;
     if      (t < 0.14) col = mix(coreCol,  armCol,   t / 0.14);
     else if (t < 0.48) col = mix(armCol,   midCol,   (t - 0.14) / 0.34);
     else               col = mix(midCol,   outerCol, clamp((t - 0.48) / 0.52, 0.0, 1.0));
 
-    float alpha = clamp(bright * 0.95, 0.0, 1.0);
+    float alpha = clamp(bright * 0.62, 0.0, 1.0);
     gl_FragColor = vec4(col, alpha);
   }
 `;

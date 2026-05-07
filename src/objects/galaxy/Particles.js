@@ -22,8 +22,8 @@ const FRAG = `
     float d = length(gl_PointCoord - 0.5);
     if (d > 0.5) discard;
     float glow  = smoothstep(0.5, 0.0, d);
-    vec3  col   = vColor * (1.15 + glow * 0.7);
-    float alpha = glow * 0.88;
+    vec3  col   = vColor * (0.95 + glow * 0.35);
+    float alpha = glow * 0.60;
     gl_FragColor = vec4(col, alpha);
   }
 `;
