@@ -1,0 +1,6 @@
+@media (max-width: 480px) {
+  .title { letter-spacing: -1px; }
+  .modal-content { padding: 1.75rem 1.5rem; }
+  .modal-links { flex-direction: column; }
+  .btn-primary, .btn-secondary { width: 100%; text-align: center; justify-content: center; }
+}

@@ -53,7 +53,10 @@ export function hideOverlay()  {
 }
 
 // ─── HUD ───────────────────────────────────────────────────────────────
-export function showHUD()  { els.hud.classList.remove('hidden'); }
+export function showHUD()  {
+  els.hud.classList.remove('hidden');
+  setTimeout(() => openGalaxyNavDropdown(), 0);
+}
 export function hideHUD()  { els.hud.classList.add('hidden'); }
 
 export function showBackBtn(label) {

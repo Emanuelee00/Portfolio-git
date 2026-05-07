@@ -7,87 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Import map: risolve i bare specifiers usati da Three.js e dai suoi addon -->
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.158.0/examples/jsm/"
-    }
-  }
-  </script>
 </head>
 <body>
-
-  <canvas id="canvas"></canvas>
-
-  <!-- Lang switch globale — elemento standalone, pointer-events: all garantito -->
-  <div id="lang-switch" class="lang-switch">
-    <button class="lang-btn active" data-lang="en">EN</button>
-    <span>/</span>
-    <button class="lang-btn" data-lang="fr">FR</button>
-    <span>/</span>
-    <button class="lang-btn" data-lang="it">IT</button>
-  </div>
-
-  <!-- Landing Overlay -->
-  <div id="overlay" class="overlay">
-    <div class="overlay-content">
-      <h1 class="title">Emanuele<br><span>Ielmini</span></h1>
-      <p class="subtitle" data-i18n="subtitle">Full Stack Developer &amp; Creative Coder</p>
-      <p class="description" data-i18n="description">Each galaxy is a collection of projects. Navigate through space and discover my digital universe.</p>
-      <button id="enter-btn" class="btn-primary" data-i18n="explore">Explore the Universe</button>
-      <div class="dev-notice">
-        <span class="dev-notice-icon">◌</span>
-        <span data-i18n="dev_notice">Some galaxies are still under development</span>
-      </div>
-    </div>
-    <p class="scroll-hint" data-i18n="hint">Click on galaxies to explore</p>
-  </div>
-
-  <!-- HUD (visibile dopo l'ingresso) -->
-  <div id="hud" class="hud hidden">
-    <div id="hud-left" class="hud-left">
-      <button id="back-btn" class="back-btn hidden" data-i18n="back">← Back</button>
-      <div id="galaxy-nav" class="galaxy-nav">
-        <button id="galaxy-nav-btn" class="galaxy-nav-btn">
-          <span data-i18n="galaxies">Galaxies</span>
-          <svg id="galaxy-nav-chevron" class="galaxy-nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M2 4l4 4 4-4"/></svg>
-        </button>
-        <ul id="galaxy-nav-list" class="galaxy-nav-list hidden"></ul>
-      </div>
-    </div>
-    <div id="galaxy-label" class="galaxy-label hidden"></div>
-  </div>
-
-  <!-- Tooltip hover -->
-  <div id="tooltip" class="tooltip"></div>
-
-  <!-- Project Modal -->
-  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
-    <div class="modal-content">
-      <button class="modal-close" id="modal-close" aria-label="Close" data-i18n="close">✕</button>
-      <div class="modal-header">
-        <div class="planet-icon" id="modal-icon"></div>
-        <div>
-          <h2 id="modal-title"></h2>
-          <p class="modal-galaxy" id="modal-galaxy"></p>
-        </div>
-      </div>
-      <p id="modal-desc"></p>
-      <div class="tech-tags" id="modal-tags"></div>
-      <div class="modal-links">
-        <a id="modal-github" href="#" target="_blank" rel="noopener noreferrer" class="btn-secondary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px;vertical-align:-2px"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          GitHub
-        </a>
-        <a id="modal-demo" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary hidden" data-i18n="live">Live Demo</a>
-      </div>
-    </div>
-  </div>
-
-  <script type="module" src="./js/main.js"></script>
+  <div id="root"></div>
+  <script type="module" src="./src/main.jsx"></script>
 </body>
 </html>

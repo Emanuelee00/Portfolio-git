@@ -1,0 +1,79 @@
+.galaxy-nav {
+  position: relative;
+  pointer-events: all;
+}
+
+.galaxy-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 100px;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 10px 20px;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.galaxy-nav-btn:hover { background: var(--glass-hover); }
+
+.galaxy-nav-chevron {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.galaxy-nav-btn.open .galaxy-nav-chevron { transform: rotate(180deg); }
+
+.galaxy-nav-list {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 210px;
+  background: rgba(12, 12, 35, 0.97);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(16px);
+  overflow: hidden;
+  z-index: 20;
+  animation: fadeIn 0.15s ease;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  list-style: none;
+  padding: 4px 0;
+}
+
+.galaxy-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 16px;
+  color: var(--text);
+  font-size: 0.87rem;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: background 0.15s;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.galaxy-nav-item:hover { background: var(--glass-hover); }
+
+.galaxy-nav-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px currentColor;
+}

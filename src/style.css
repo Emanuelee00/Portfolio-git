@@ -1,0 +1,15 @@
+/* ─── Base ───────────────────────────────────────────────────────────── */
+@import "./css/base/variables.css";
+@import "./css/base/animations.css";
+
+/* ─── Components ─────────────────────────────────────────────────────── */
+@import "./css/components/overlay.css";
+@import "./css/components/buttons.css";
+@import "./css/components/lang-switch.css";
+@import "./css/components/hud.css";
+@import "./css/components/galaxy-nav.css";
+@import "./css/components/tooltip.css";
+@import "./css/components/modal.css";
+
+/* ─── Responsive ─────────────────────────────────────────────────────── */
+@import "./css/base/responsive.css";
